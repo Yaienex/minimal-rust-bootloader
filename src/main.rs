@@ -7,7 +7,9 @@ fn main() {
 
     // choose whether to start the UEFI or BIOS image
     let uefi = false;
-
+    // Panic will be displayed in the serial port
+    let serial = false;
+    
     let mut cmd = std::process::Command::new("qemu-system-x86_64");
     if uefi {
         cmd.arg("-bios").arg(ovmf_prebuilt::ovmf_pure_efi());
@@ -15,6 +17,10 @@ fn main() {
     } else {
         cmd.arg("-drive").arg(format!("format=raw,file={bios_path}"));
     }
+    if serial{
+        cmd.arg("-serial").arg("stdio");
+    }
+   
     let mut child = cmd.spawn().unwrap();
     child.wait().unwrap();
 }

@@ -5,7 +5,6 @@ use bootloader_api::{entry_point, BootInfo, info::FrameBufferInfo};
 
 entry_point!(kernel_main);
 
-static HELLO: &[u8] = b"Hello World!";
 
 
 pub fn kernel_main(boot_info: &'static mut BootInfo) -> !{
@@ -13,8 +12,11 @@ pub fn kernel_main(boot_info: &'static mut BootInfo) -> !{
     let _kernel_len = boot_info.kernel_len;
     let _kernel_addr  = boot_info.kernel_addr;
 
-    if let Some(_framebuffer) = boot_info.framebuffer.as_mut() {
-       // Do your magic
+    if let Some(framebuffer) = boot_info.framebuffer.as_mut() {
+       let _info = framebuffer.info();
+        let mut buffer = framebuffer.buffer_mut();
+
+        //As you wish then !
     }
 
 
@@ -22,8 +24,6 @@ pub fn kernel_main(boot_info: &'static mut BootInfo) -> !{
 }
 
 use core::panic::PanicInfo;
-use bootloader_api::info::{FrameBuffer, PixelFormat};
-
 /// This function is called on panic.
 #[panic_handler]
 fn panic(_info: &PanicInfo) -> ! {
