@@ -6,7 +6,7 @@ fn main() {
     let bios_path = env!("BIOS_PATH");
 
     // choose whether to start the UEFI or BIOS image
-    let uefi = false;
+    let uefi = true;
     // Panic will be displayed in the serial port
     let serial = false;
     

@@ -5,6 +5,8 @@ edition = "2024"
 
 [dependencies]
 bootloader_api = "0.11.12"
+noto-sans-mono-bitmap = { version = "0.3.1", features = ["size_24"] }
+
 
 [profile.dev]
 panic = "abort"
