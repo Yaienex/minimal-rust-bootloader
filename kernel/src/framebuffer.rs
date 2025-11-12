@@ -120,9 +120,6 @@ impl FrameBufferWriter {
         }
         self.x_pos += rendered_char.width() + LETTER_SPACING;
     }
-    fn caca(&mut self){
-
-    }
 
     fn write_pixel(&mut self, x: usize, y: usize, intensity: u8) {
         let pixel_offset = y * self.info.stride + x;

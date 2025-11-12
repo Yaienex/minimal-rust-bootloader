@@ -14,10 +14,10 @@ entry_point!(kernel_main);
 
 pub fn kernel_main(boot_info: &'static mut BootInfo) -> !{
     //Refer to the documentation for more useful infos
-    let kernel_len = boot_info.kernel_len;
-    let kernel_addr  = boot_info.kernel_addr;
+    let _kernel_len = boot_info.kernel_len;
+    let _kernel_addr  = boot_info.kernel_addr;
 
-    let (mut buffer, mut frame_buffer_info) = {
+    let ( buffer,  frame_buffer_info) = {
         let framebuffer = boot_info.framebuffer.as_mut().unwrap();
         let info = framebuffer.info();
         (framebuffer.buffer_mut(),info)
@@ -25,7 +25,7 @@ pub fn kernel_main(boot_info: &'static mut BootInfo) -> !{
     let mut writer = FrameBufferWriter::new(buffer,frame_buffer_info);
 
    writer.clear();
-    writer.write_str(" Hello, world!\n");
+    let _ =writer.write_str(" Hello, world!\n");
 
 
 
